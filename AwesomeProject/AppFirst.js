@@ -11,10 +11,10 @@ import {Platform, StyleSheet, Text, View,Image} from 'react-native';
 
 
 const instructions = Platform.select({
-    ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-    android:
-        'Double tap R on your keyboard to reload,\n' +
-        'Shake or press menu button for dev menu',
+  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  android:
+    'Double tap R on your keyboard to reload,\n' +
+    'Shake or press menu button for dev menu',
 });
 
 let pic = {
@@ -22,23 +22,23 @@ let pic = {
 };
 
 type Props = {};
-export default class App extends Component<Props> {
-    render() {
-        return (
+export default class AppFirst extends Component<Props> {
+  render() {
+    return (
 
-            <View style={styles.container}>
+      <View style={styles.container}>
 
-                <Text style={styles.welcome}>Welcome to React Native!</Text>
-                <Text style={styles.instructions}>To get started, edit App.js</Text>
-                <Text style={styles.instructions}>{instructions}</Text>
-                <Image source={pic} style={{width: 193, height: 110}} />
-                <Greeting name='qiuqiu' />
-                <Blink text='快看我' />
+        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.instructions}>To get started, edit App.js</Text>
+        <Text style={styles.instructions}>{instructions}</Text>
+        <Image source={pic} style={{width: 193, height: 110}} />
+        <Greeting name='qiuqiu' />
+          <Blink text='快看我' />
 
-            </View>
+      </View>
 
-        );
-    }
+    );
+  }
 }
 
 
@@ -65,11 +65,19 @@ class Blink extends Component {
         // setState 是异步操作，修改不会马上生效
 
         // 每1000毫秒对showText状态做一次取反操作
-        setInterval(() => {
+        this.timer=setInterval(() => {
             this.setState(previousState => {
                 return { isShowingText: !previousState.isShowingText };
             });
         }, 1000);
+
+
+        this.componentWillUnmount== this.componentWillUnmount.bind(this);
+    }
+
+    componentWillUnmount() {
+        console.log('销毁定时器，否则会轰炸cpu')
+        clearInterval(this.timer);
     }
 
     render() {
@@ -86,20 +94,20 @@ class Blink extends Component {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
 });

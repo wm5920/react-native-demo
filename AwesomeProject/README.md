@@ -41,6 +41,15 @@ react-native run-android
 ```
 
 # 注意
-gradle不要手残随便升级
+1.gradle不要手残随便升级
+2.ios出现index.bundle，Running Metro Bundler on port 8081等错误，关掉终端启动的服务，重新运行即可
+3.ios调试console.log 按cmd+d打开弹框，选择remote js debugging
+
+# 跳转页
+支持ios与android
+yarn add react-navigation
+yarn add react-native-gesture-handler
+react-native link react-native-gesture-handler
+
 
 
